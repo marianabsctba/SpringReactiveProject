@@ -2,6 +2,24 @@ package infnet.edu.springreactiveproject.controller;
 
 import infnet.edu.springreactiveproject.model.Supplier;
 import infnet.edu.springreactiveproject.service.SupplierService;
+
+import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+import infnet.edu.springreactiveproject.model.Supplier;
+import infnet.edu.springreactiveproject.service.SupplierService;
+import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+
+import infnet.edu.springreactiveproject.model.Product;
+import infnet.edu.springreactiveproject.service.ProductService;
+import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+
+import infnet.edu.springreactiveproject.model.Supplier;
+import infnet.edu.springreactiveproject.service.SupplierService;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -22,20 +40,13 @@ public class SupplierController {
     }
 
     @PutMapping("/{id}")
-    public Mono<Supplier> updateSupplier(@PathVariable Long id, @RequestBody Supplier supplier) {
+    public Mono<Supplier> updateSupplier(@PathVariable Integer id, @RequestBody Supplier supplier) {
         return supplierService.updateSupplier(id, supplier);
     }
 
     @DeleteMapping("/{id}")
-    public Mono<Void> deleteSupplier(@PathVariable Long id) {
+    public Mono<Void> deleteSupplier(@PathVariable Integer id) {
         return supplierService.deleteSupplier(id);
-    }
-
-    @GetMapping("/{id}")
-    public Mono<Supplier> getSupplierById(@PathVariable Long id) {
-        return supplierService.findAllSuppliers()
-                .filter(supplier -> supplier.getId().equals(id))
-                .next();  // Assumindo que IDs são únicos, então pegamos o primeiro resultado
     }
 
     @GetMapping
@@ -43,3 +54,5 @@ public class SupplierController {
         return supplierService.findAllSuppliers();
     }
 }
+
+

@@ -5,6 +5,9 @@ import infnet.edu.springreactiveproject.repository.SupplierRepository;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 @Service
 public class SupplierService {
@@ -19,7 +22,7 @@ public class SupplierService {
         return supplierRepository.save(supplier);
     }
 
-    public Mono<Supplier> updateSupplier(Long id, Supplier updatedSupplier) {
+    public Mono<Supplier> updateSupplier(Integer id, Supplier updatedSupplier) {
         return supplierRepository.findById(id)
                 .flatMap(supplier -> {
                     supplier.setName(updatedSupplier.getName());
@@ -28,15 +31,13 @@ public class SupplierService {
                 });
     }
 
-    public Mono<Void> deleteSupplier(Long id) {
+    public Mono<Void> deleteSupplier(Integer id) {
         return supplierRepository.deleteById(id);
-    }
-
-    public Mono<Supplier> findSupplierByName(String name) {
-        return supplierRepository.findByName(name);
     }
 
     public Flux<Supplier> findAllSuppliers() {
         return supplierRepository.findAll();
     }
 }
+
+

@@ -5,6 +5,19 @@ import infnet.edu.springreactiveproject.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+
+import infnet.edu.springreactiveproject.model.Product;
+import infnet.edu.springreactiveproject.repository.ProductRepository;
+import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 @Service
 public class ProductService {
@@ -19,7 +32,7 @@ public class ProductService {
         return productRepository.save(product);
     }
 
-    public Mono<Product> updateProduct(Long id, Product updatedProduct) {
+    public Mono<Product> updateProduct(Integer id, Product updatedProduct) {
         return productRepository.findById(id)
                 .flatMap(product -> {
                     product.setName(updatedProduct.getName());
@@ -28,12 +41,8 @@ public class ProductService {
                 });
     }
 
-    public Mono<Void> deleteProduct(Long id) {
+    public Mono<Void> deleteProduct(Integer id) {
         return productRepository.deleteById(id);
-    }
-
-    public Flux<Product> findProductsByName(String name) {
-        return productRepository.findByName(name);
     }
 
     public Flux<Product> findAllProducts() {

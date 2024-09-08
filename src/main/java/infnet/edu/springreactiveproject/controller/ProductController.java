@@ -8,7 +8,7 @@ import reactor.core.publisher.Mono;
 
 @RestController
 @RequestMapping("/products")
-class ProductController {
+public class ProductController {
 
     private final ProductService productService;
 
@@ -22,20 +22,13 @@ class ProductController {
     }
 
     @PutMapping("/{id}")
-    public Mono<Product> updateProduct(@PathVariable Long id, @RequestBody Product product) {
+    public Mono<Product> updateProduct(@PathVariable Integer id, @RequestBody Product product) {
         return productService.updateProduct(id, product);
     }
 
     @DeleteMapping("/{id}")
-    public Mono<Void> deleteProduct(@PathVariable Long id) {
+    public Mono<Void> deleteProduct(@PathVariable Integer id) {
         return productService.deleteProduct(id);
-    }
-
-    @GetMapping("/{id}")
-    public Mono<Product> getProductById(@PathVariable Long id) {
-        return productService.findAllProducts()
-                .filter(product -> product.getId().equals(id))
-                .next();  // Assumindo que IDs são únicos, então pegamos o primeiro resultado
     }
 
     @GetMapping
